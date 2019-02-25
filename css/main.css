@@ -36,9 +36,6 @@
  * -------------------------------------------------------------------
  */
 @import url("fonts.css");
-/*@import url("font-awesome/css/font-awesome.min.css");*/
-@import url("micons/micons.css");
-
 
 /**
  * ===================================================================
@@ -1669,6 +1666,7 @@ header .logo a {
 }
 #resume .timeline-ico i {
 	position: relative;
+	font-size: 2rem;
 	left: .05rem;
 	top: .2rem;
 }
