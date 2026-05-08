@@ -1,0 +1,92 @@
+/* Register the property to allow interpolation */
+@property --split-pos {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 50%;
+}
+
+:root {
+    --split-pos: 50%;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+}
+
+.fixed-background {
+    position: fixed;
+    top: 0;
+    /* Make it wider to allow room for sliding */
+    left: -50vw;
+    width: 200vw;
+    height: 100vh;
+    z-index: 1;
+    /* Use a static gradient centered at 50% of the 200vw width */
+    background: linear-gradient(
+            105deg,
+            white 50%,
+            #333 calc(50% + 1px),
+            #333 calc(50% + 2px),
+            black calc(50% + 3px)
+    );
+    /* Transition the transform property instead of the gradient */
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 2; /* Sit above the background */
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.page {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent; /* Crucial: must be transparent */
+}
+
+h1:not(.myName) {
+    font-size: 10rem;
+    font-family: sans-serif;
+    color: white;
+    mix-blend-mode: difference;
+    pointer-events: none;
+}
+
+.dots-container {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0.3;
+    mix-blend-mode: difference;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    opacity: 1;
+    transform: scale(1.3);
+}
